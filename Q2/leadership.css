@@ -1,0 +1,53 @@
+/* For Desktop or large screen */
+@media screen and (min-width: 1200px) {
+    .value-row {
+        flex-direction: row;
+    }
+    .values {
+        flex-direction: column;
+    }
+}
+/* For Tablet*/
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .value-row {
+        flex-direction: column;
+    }
+    .values {
+        flex-direction: row;
+    }
+}
+/* For Mobile Screen */
+@media screen and (max-width: 767px) {
+    .value-row {
+        flex-direction: column;
+    }
+    .values {
+        flex-direction: column;
+    }
+}
+
+.value-proposition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    color: #7a858b;
+    line-height: 48px;
+    font-family: "neusa-next-std-condensed";
+    font-weight: 500;
+    margin: 5px 0 40px 0;
+}
+
+.value-row {
+    display: flex;
+    gap: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    margin: 10px 0 10px 0;
+}
+
+.values {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
