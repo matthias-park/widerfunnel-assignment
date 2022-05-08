@@ -1,20 +1,30 @@
 //Sticky Sider Bar
-var stickyBlock = document.querySelector('.show-on-desktop-min');
-var headerOffsetY = document.querySelector('.site-header').offsetHeight;
-var stopOffsetY = document.querySelector('.go-group-leader-content').offsetTop + headerOffsetY;
-var sidebarWidth = document.querySelector('#sidebar').offsetWidth;
+const stickyBlock = document.querySelector('.show-on-desktop-min');
+const headerOffsetY = document.querySelector('.site-header').clientHeight;
+
+//Position Sticky Solution -> for without IE
+// stickyBlock.style.position = 'sticky';
+// stickyBlock.style.position = '-webkit-sticky';
+// stickyBlock.style.top = `${headerOffsetY}px`;
+
+//Fixed Solution -> for IE
+const startOffsetY = document.querySelector('.banner-small').offsetHeight;
+const stopOffsetY = document.querySelector('#post-32522').offsetHeight;
+const sidebarWidth = stickyBlock.offsetWidth;
 
 function onScroll() {
     //if scroll Y point is bigger(scroll is lower) than go-group-leader section, sidebar will be held
-    if (window.scrollY >= stopOffsetY - headerOffsetY) {
-        stickyBlock.style.position = 'absolute';
-        stickyBlock.style.top = `${stopOffsetY}px`;
+    if ( window.scrollY >= startOffsetY && stopOffsetY >= window.scrollY) {
+        stickyBlock.style.position = 'fixed';
+        stickyBlock.style.top = `${headerOffsetY}px`;
         stickyBlock.style.width = `${sidebarWidth}px`;
     // otherwise, sidebar is working like sticky
+    } else if (window.scrollY >= stopOffsetY) {
+        stickyBlock.style.position = 'absolute';
+        stickyBlock.style.top = `${stopOffsetY + headerOffsetY}px`;
+        stickyBlock.style.width = `${sidebarWidth}px`;
     } else {
-        stickyBlock.style.position = 'sticky';
-        stickyBlock.style.position = '-webkit-sticky';
-        stickyBlock.style.top = `${headerOffsetY}px`;
+        stickyBlock.style.position = 'static';
     }
 }
 
