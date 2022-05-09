@@ -9,20 +9,21 @@ const headerOffsetY = document.querySelector('.site-header').clientHeight;
 
 //Fixed Solution -> for IE
 const startOffsetY = document.querySelector('.banner-small').offsetHeight;
-const stopOffsetY = document.querySelector('#post-32522').offsetHeight;
+const stopOffsetY = document.querySelector('#post-32522').scrollHeight;
 const sidebarWidth = stickyBlock.offsetWidth;
 
 function onScroll() {
-    //if scroll Y point is bigger(scroll is lower) than go-group-leader section, sidebar will be held
+    //sidebar is working like sticky, if scrollY values is in main section id post-32522
     if ( window.scrollY >= startOffsetY && stopOffsetY >= window.scrollY) {
         stickyBlock.style.position = 'fixed';
         stickyBlock.style.top = `${headerOffsetY}px`;
         stickyBlock.style.width = `${sidebarWidth}px`;
-    // otherwise, sidebar is working like sticky
+    // if scroll Y value is bigger(scroll is lower) than go-group-leader scroll height, sidebar will be held
     } else if (window.scrollY >= stopOffsetY) {
         stickyBlock.style.position = 'absolute';
-        stickyBlock.style.top = `${stopOffsetY + headerOffsetY}px`;
+        stickyBlock.style.top = `${stopOffsetY}px`;
         stickyBlock.style.width = `${sidebarWidth}px`;
+    // when scroll is above sidebar, it will be at an original place.
     } else {
         stickyBlock.style.position = 'static';
     }
